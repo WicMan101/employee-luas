@@ -1,6 +1,7 @@
 dependencies {
     // Kotlin & Core
     implementation "androidx.core:core-ktx:$CORE_KTX_VERSION"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$KOTLIN_VERSION"
     implementation "androidx.appcompat:appcompat:$APPCOMPAT_VERSION"
 
     // Material Design
@@ -10,6 +11,10 @@ dependencies {
     implementation "io.insert-koin:koin-android:$KOIN_VERSION"
     testImplementation "io.insert-koin:koin-test:$KOIN_TEST_VERSION"
 
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
+    implementation "com.squareup.retrofit2:converter-simplexml:$RETROFIT_VERSION"
+
     // Mockito
     testImplementation "org.mockito.kotlin:mockito-kotlin:4.0.0"
 
@@ -18,4 +23,6 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:$JUNIT_EXT_VERSION"
     // Espresso
     androidTestImplementation "androidx.test.espresso:espresso-core:$ESPRESSO_CORE_VERSION"
+    // Coroutines
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$COROUTINES_VERSION"
 }
