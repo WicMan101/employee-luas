@@ -17,12 +17,12 @@ import kotlin.test.assertTrue
 class AppUtilsShould {
 
     lateinit var appUtils: AppUtils
-    val context = mock<Context>()
-    val connectivityManager = mock<ConnectivityManager>()
+    private val context = mock<Context>()
+    private val connectivityManager = mock<ConnectivityManager>()
 
     @Before
     fun setup() {
-        appUtils = AppUtils()
+        appUtils = AppUtils(context)
 
         `when`(context.getSystemService(Context.CONNECTIVITY_SERVICE)).thenReturn(
             connectivityManager
@@ -31,7 +31,7 @@ class AppUtilsShould {
 
     @Test
     fun `return false when capabilities are null`() {
-        val isConnected = appUtils.isNetworkAvailable(context)
+        val isConnected = appUtils.isNetworkAvailable()
         assertFalse(isConnected, "no networks are available.")
     }
 
@@ -45,7 +45,7 @@ class AppUtilsShould {
             capabilities
         )
 
-        val isConnected = appUtils.isNetworkAvailable(context)
+        val isConnected = appUtils.isNetworkAvailable()
         assertTrue(isConnected, "Cellular network is available.")
     }
 
@@ -59,7 +59,7 @@ class AppUtilsShould {
             capabilities
         )
 
-        val isConnected = appUtils.isNetworkAvailable(context)
+        val isConnected = appUtils.isNetworkAvailable()
         assertTrue(isConnected, "WiFi network is available.")
     }
 
@@ -73,7 +73,7 @@ class AppUtilsShould {
             capabilities
         )
 
-        val isConnected = appUtils.isNetworkAvailable(context)
+        val isConnected = appUtils.isNetworkAvailable()
         assertTrue(isConnected, "ethernet network is available.")
     }
 }
