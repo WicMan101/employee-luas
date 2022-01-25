@@ -1,0 +1,21 @@
+dependencies {
+    // Kotlin & Core
+    implementation "androidx.core:core-ktx:$CORE_KTX_VERSION"
+    implementation "androidx.appcompat:appcompat:$APPCOMPAT_VERSION"
+
+    // Material Design
+    implementation "com.google.android.material:material:$MATERIAL_VERSION"
+
+    // Koin
+    implementation "io.insert-koin:koin-android:$KOIN_VERSION"
+    testImplementation "io.insert-koin:koin-test:$KOIN_TEST_VERSION"
+
+    // Mockito
+    testImplementation "org.mockito.kotlin:mockito-kotlin:4.0.0"
+
+    // JUnit
+    testImplementation "junit:junit:$JUNIT_VERSION"
+    androidTestImplementation "androidx.test.ext:junit:$JUNIT_EXT_VERSION"
+    // Espresso
+    androidTestImplementation "androidx.test.espresso:espresso-core:$ESPRESSO_CORE_VERSION"
+}

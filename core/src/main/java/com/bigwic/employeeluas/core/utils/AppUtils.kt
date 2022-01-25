@@ -4,8 +4,8 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 
-class AppUtils {
-    fun isNetworkAvailable(context: Context): Boolean {
+class AppUtils(private val context: Context) {
+    fun isNetworkAvailable(): Boolean {
         var hasConnection = false
 
         val connectivityManager = context
