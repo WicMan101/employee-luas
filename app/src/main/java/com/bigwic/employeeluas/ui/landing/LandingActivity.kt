@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
@@ -34,8 +35,12 @@ class LandingActivity : AppCompatActivity() {
         setSupportActionBar(binding.tBarLanding)
         setActionBarLoading(true, getString(R.string.loading))
 
-        initializeViews()
-        startObserving()
+        if (appUtils.isNetworkAvailable()) {
+            initializeViews()
+            startObserving()
+        } else {
+            Toast.makeText(this, getString(R.string.network_unavailable_title), Toast.LENGTH_LONG).show()
+        }
     }
 
     override fun onStart() {

@@ -2,4 +2,9 @@
     <string name="app_name">Employee LUAS</string>
     <string name="refresh_title">Refresh</string>
     <string name="loading">Loading...</string>
+    <string name="network_unavailable_title">No network connection.</string>
+    <string name="updated_title">Updated:</string>
+    <string name="direction_title">Direction:</string>
+    <string name="destination_title">Destination:</string>
+    <string name="arrival_title">Arrival:</string>
 </resources>
