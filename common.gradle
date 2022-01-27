@@ -19,8 +19,9 @@ android {
     buildTypes {
         debug {
             minifyEnabled false
-            buildConfigField "String", "API_URL", "\"http://luasforecasts.rpa.ie/xml/get.ashx\""
+            buildConfigField "String", "API_URL", "\"http://luasforecasts.rpa.ie/xml/\""
             debuggable true
+            testCoverageEnabled true
         }
 
         release {
@@ -34,5 +35,10 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
     }
 }

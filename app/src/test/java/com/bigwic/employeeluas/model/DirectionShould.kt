@@ -9,7 +9,7 @@ import kotlin.test.assertNotNull
 @RunWith(JUnit4::class)
 class DirectionShould {
     private val name = "Outbound"
-    private val trams = listOf(
+    private var trams = listOf(
         Tram("11", "Test"),
         Tram("DUE", "Test 2")
     )
@@ -19,6 +19,15 @@ class DirectionShould {
         val direction = Direction(name, trams)
         assertNotNull(direction)
         assertEquals(name, direction.name)
-        assertEquals(trams, direction.trams)
+        assertEquals(trams, direction.tram)
+        assertEquals(trams[0].dueMins, direction.tram!![0].dueMins)
+        assertEquals(trams[0].destination, direction.tram!![0].destination)
+    }
+
+    @Test
+    fun `handle empty trams list without exception`() {
+        trams = emptyList()
+        val direction = Direction(name, trams)
+        assertEquals(emptyList(), direction.tram)
     }
 }

@@ -3,6 +3,7 @@ package com.bigwic.employeeluas.model
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
+import org.mockito.kotlin.verify
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 
@@ -18,7 +19,7 @@ class StopInfoShould {
         Tram("11", "Test"),
         Tram("DUE", "Test 2")
     )
-    private val direction = listOf(Direction(name, trams))
+    private var direction = listOf(Direction(name, trams))
 
     @Test
     fun `return valid model with provided params`() {
@@ -29,5 +30,14 @@ class StopInfoShould {
         assertEquals(stopAbv, stopInfo.stopAbv)
         assertEquals(message, stopInfo.message)
         assertEquals(direction, stopInfo.direction)
+        assertEquals(direction[0].name, stopInfo.direction!![0].name)
+        assertEquals(direction[0].tram, stopInfo.direction!![0].tram)
+    }
+
+    @Test
+    fun `handle empty directions list without exception`() {
+        direction = emptyList()
+        val stopInfo = StopInfo(created, stop, stopAbv, message, direction)
+        assertEquals(emptyList(), stopInfo.direction)
     }
 }
