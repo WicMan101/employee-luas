@@ -10,22 +10,25 @@ import org.junit.runners.JUnit4
 import org.mockito.Mockito.`when`
 import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock
+import java.util.*
+import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
+
 
 @RunWith(JUnit4::class)
 class AppUtilsShould {
 
     lateinit var appUtils: AppUtils
-    private val context = mock<Context>()
-    private val connectivityManager = mock<ConnectivityManager>()
+    private val mockContext = mock<Context>()
+    private val mockConnectivityManager = mock<ConnectivityManager>()
 
     @Before
     fun setup() {
-        appUtils = AppUtils(context)
+        appUtils = AppUtils(mockContext)
 
-        `when`(context.getSystemService(Context.CONNECTIVITY_SERVICE)).thenReturn(
-            connectivityManager
+        `when`(mockContext.getSystemService(Context.CONNECTIVITY_SERVICE)).thenReturn(
+            mockConnectivityManager
         )
     }
 
@@ -41,7 +44,7 @@ class AppUtilsShould {
             on { hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) } doReturn true
         }
 
-        `when`(connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)).thenReturn(
+        `when`(mockConnectivityManager.getNetworkCapabilities(mockConnectivityManager.activeNetwork)).thenReturn(
             capabilities
         )
 
@@ -55,7 +58,7 @@ class AppUtilsShould {
             on { hasTransport(NetworkCapabilities.TRANSPORT_WIFI) } doReturn true
         }
 
-        `when`(connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)).thenReturn(
+        `when`(mockConnectivityManager.getNetworkCapabilities(mockConnectivityManager.activeNetwork)).thenReturn(
             capabilities
         )
 
@@ -69,11 +72,34 @@ class AppUtilsShould {
             on { hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) } doReturn true
         }
 
-        `when`(connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)).thenReturn(
+        `when`(mockConnectivityManager.getNetworkCapabilities(mockConnectivityManager.activeNetwork)).thenReturn(
             capabilities
         )
 
         val isConnected = appUtils.isNetworkAvailable()
         assertTrue(isConnected, "ethernet network is available.")
+    }
+
+    @Test
+    fun `format date to readable date`() {
+        val unreadableDate = "2022-01-24T23:35:50"
+        val readableDate = appUtils.formatToReadableDate(unreadableDate)
+        assertEquals("24/01/2022 23:35", readableDate)
+    }
+
+    @Test
+    fun `return isEvening true when providing 18`() {
+        val currentTime = Calendar.getInstance()
+        currentTime.set(Calendar.HOUR_OF_DAY, Integer.valueOf(18))
+        currentTime.set(Calendar.MINUTE, Integer.valueOf(0))
+        assertTrue(appUtils.isEvening(currentTime))
+    }
+
+    @Test
+    fun `return isEvening false when providing 10`() {
+        val currentTime = Calendar.getInstance()
+        currentTime.set(Calendar.HOUR_OF_DAY, Integer.valueOf(10))
+        currentTime.set(Calendar.MINUTE, Integer.valueOf(0))
+        assertFalse(appUtils.isEvening(currentTime))
     }
 }

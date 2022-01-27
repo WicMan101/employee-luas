@@ -4,6 +4,11 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$KOTLIN_VERSION"
     implementation "androidx.appcompat:appcompat:$APPCOMPAT_VERSION"
 
+    // Android Lifecycle
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$LIFECYCLE_VERSION"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$LIFECYCLE_VERSION"
+    kapt "androidx.lifecycle:lifecycle-compiler:$LIFECYCLE_VERSION"
+
     // Material Design
     implementation "com.google.android.material:material:$MATERIAL_VERSION"
 
@@ -15,14 +20,32 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
     implementation "com.squareup.retrofit2:converter-simplexml:$RETROFIT_VERSION"
 
+    // OkHTTPLogging Interceptor
+    implementation "com.squareup.okhttp3:logging-interceptor:$OKHTTP_INT_VERSION"
+
+    // Tickaroo
+    implementation "com.tickaroo.tikxml:annotation:$TICKAROO_VERSION"
+    implementation "com.tickaroo.tikxml:core:$TICKAROO_VERSION"
+    kapt "com.tickaroo.tikxml:processor:$TICKAROO_VERSION"
+    implementation "com.tickaroo.tikxml:converter-htmlescape:$TICKAROO_VERSION"
+    implementation "com.tickaroo.tikxml:retrofit-converter:$TICKAROO_VERSION"
+
     // Mockito
-    testImplementation "org.mockito.kotlin:mockito-kotlin:4.0.0"
+    testImplementation "org.mockito.kotlin:mockito-kotlin:$MOCKITO_VERSION"
 
     // JUnit
     testImplementation "junit:junit:$JUNIT_VERSION"
     androidTestImplementation "androidx.test.ext:junit:$JUNIT_EXT_VERSION"
+
     // Espresso
     androidTestImplementation "androidx.test.espresso:espresso-core:$ESPRESSO_CORE_VERSION"
+
     // Coroutines
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$COROUTINES_VERSION"
+
+    // Arch Core
+    testImplementation "androidx.arch.core:core-testing:$ARCH_CORE_VERSION"
+
+    // JUnit ktx
+    testImplementation "androidx.test.ext:junit-ktx:$TEST_KTX_VERSION"
 }

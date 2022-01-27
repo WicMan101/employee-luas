@@ -6,7 +6,7 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 
 val networkModule = module {
-    factory { provideForecastApi(get()) }
+    single { provideForecastApi(get()) }
     factory { ForecastRepository(get()) }
 }
 

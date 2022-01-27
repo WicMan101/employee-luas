@@ -1,6 +1,11 @@
 package com.bigwic.employeeluas.model
 
+import com.tickaroo.tikxml.annotation.*
+
+@Xml
 data class Direction constructor(
+    @Attribute
     var name: String,
-    var trams: List<Tram>,
+    @Element
+    var tram: List<Tram>?
 )
