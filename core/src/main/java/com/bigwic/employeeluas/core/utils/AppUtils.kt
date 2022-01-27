@@ -43,11 +43,12 @@ class AppUtils(private val context: Context) {
     fun isEvening(currentTime: Calendar): Boolean {
         val fromTime = Calendar.getInstance()
         fromTime.set(Calendar.HOUR_OF_DAY, Integer.valueOf(12))
-        fromTime.set(Calendar.MINUTE, Integer.valueOf(1))
+        fromTime.set(Calendar.MINUTE, Integer.valueOf(0))
 
         val toTime = Calendar.getInstance()
         toTime.set(Calendar.HOUR_OF_DAY, Integer.valueOf(23))
         toTime.set(Calendar.MINUTE, Integer.valueOf(59))
+        toTime.set(Calendar.SECOND, Integer.valueOf(59))
 
         return currentTime.after(fromTime) && currentTime.before(toTime)
     }

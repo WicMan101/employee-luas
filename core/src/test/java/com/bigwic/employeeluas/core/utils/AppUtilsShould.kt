@@ -88,7 +88,23 @@ class AppUtilsShould {
     }
 
     @Test
-    fun `return isEvening true when providing 18`() {
+    fun `return isEvening true when providing 23h59m`() {
+        val currentTime = Calendar.getInstance()
+        currentTime.set(Calendar.HOUR_OF_DAY, Integer.valueOf(23))
+        currentTime.set(Calendar.MINUTE, Integer.valueOf(59))
+        assertTrue(appUtils.isEvening(currentTime))
+    }
+
+    @Test
+    fun `return isEvening true when providing 12h01m`() {
+        val currentTime = Calendar.getInstance()
+        currentTime.set(Calendar.HOUR_OF_DAY, Integer.valueOf(12))
+        currentTime.set(Calendar.MINUTE, Integer.valueOf(1))
+        assertTrue(appUtils.isEvening(currentTime))
+    }
+
+    @Test
+    fun `return isEvening true when providing 18h0m`() {
         val currentTime = Calendar.getInstance()
         currentTime.set(Calendar.HOUR_OF_DAY, Integer.valueOf(18))
         currentTime.set(Calendar.MINUTE, Integer.valueOf(0))
@@ -96,7 +112,23 @@ class AppUtilsShould {
     }
 
     @Test
-    fun `return isEvening false when providing 10`() {
+    fun `return isEvening false when providing 00h00m`() {
+        val currentTime = Calendar.getInstance()
+        currentTime.set(Calendar.HOUR_OF_DAY, Integer.valueOf(12))
+        currentTime.set(Calendar.MINUTE, Integer.valueOf(0))
+        assertFalse(appUtils.isEvening(currentTime))
+    }
+
+    @Test
+    fun `return isEvening false when providing 12m00s`() {
+        val currentTime = Calendar.getInstance()
+        currentTime.set(Calendar.HOUR_OF_DAY, Integer.valueOf(12))
+        currentTime.set(Calendar.MINUTE, Integer.valueOf(0))
+        assertFalse(appUtils.isEvening(currentTime))
+    }
+
+    @Test
+    fun `return isEvening false when providing 10h0m`() {
         val currentTime = Calendar.getInstance()
         currentTime.set(Calendar.HOUR_OF_DAY, Integer.valueOf(10))
         currentTime.set(Calendar.MINUTE, Integer.valueOf(0))
